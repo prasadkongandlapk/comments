@@ -1,0 +1,79 @@
+.bg {
+  background-color: white;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  padding-left: 60px;
+  padding-right: 60px;
+
+  font-family: 'roboto';
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.about {
+  color: #475569;
+  font-weight: bold;
+}
+
+.img {
+  height: 150px;
+  width: 200px;
+  padding-bottom: 50px;
+}
+
+form {
+  color: #475569;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.input1 {
+  width: 50%;
+  margin: 10px;
+}
+.input2 {
+  width: 50%;
+  margin: 10px;
+  outline: none;
+}
+
+button {
+  background-color: #0284c7;
+  border-radius: 5px;
+  height: 20px;
+  outline: none;
+  border-style: none;
+  width: 25%;
+  color: white;
+  margin-left: 10px;
+}
+
+.align-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 20%;
+}
+
+.row-align {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  color: #475569;
+}
+
+.count-style {
+  background-color: #0284c7;
+  width: 15px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 10px;
+  border-radius: 2px;
+}
