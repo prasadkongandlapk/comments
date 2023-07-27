@@ -2,7 +2,7 @@ import './index.css'
 
 const CommentItem = props => {
   const {details, onClickLikeBtn, onDelete} = props
-  const {id, name, comment, isLiked, date, initialBgColorClassName} = details
+  const {id, name, comment, isLiked, date, bgColor} = details
 
   const onClickDelete = () => {
     onDelete(id)
@@ -12,23 +12,36 @@ const CommentItem = props => {
     onClickLikeBtn(id)
   }
 
+  const likeColor = isLiked ? (
+    <p className="likecolor">Like</p>
+  ) : (
+    <p className="aljdfjfj">Like</p>
+  )
+
   const like = isLiked
     ? 'https://assets.ccbp.in/frontend/react-js/comments-app/liked-img.png'
     : 'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
 
   return (
     <li>
-      <p className="bg-profile">{name[0]}</p>
-      <div>
-        <p>{name}</p>
-        <p>{date}</p>
+      <div className="profile">
+        <div className="bg-profile">
+          <p className={bgColor}>{name[0]}</p>
+        </div>
+        <p className="nameaa">{name}</p>
+        <p className="dc">{date}</p>
       </div>
-      <p>{comment}</p>
-      <div>
-        <button onClick={onlike}>
-          <img src={like} alt={like} />
+      <p className="">{comment}</p>
+      <div className="bgdsls">
+        <button className="like" type="button" onClick={onlike}>
+          <img className="avjadslkjdsjkl" src={like} alt={like} /> {likeColor}
         </button>
-        <button type="button" onClick={onClickDelete}>
+        <button
+          className="dell"
+          data-testid="delete"
+          type="button"
+          onClick={onClickDelete}
+        >
           <img
             className="delete"
             src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"

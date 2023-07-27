@@ -16,11 +16,11 @@ const initialContainerBackgroundClassNames = [
   'light-blue',
 ]
 
-const comentsList = []
+const InitialCommentsList = []
 
 class Comments extends Component {
   state = {
-    comentsList: comentsList,
+    commentsList: InitialCommentsList,
     count: 0,
     name: '',
     comment: '',
@@ -37,37 +37,35 @@ class Comments extends Component {
         )
       ]
     }`
+    if (name.length > 0 && comment.length > 0) {
+      const newComent = {
+        id: uuidv4(),
+        name,
+        comment,
+        date: formatDistanceToNow(new Date()),
+        isLiked: false,
+        bgColor: initialBgColorClassName,
+      }
 
-    const newComent = {
-      id: uuidv4(),
-      name,
-      comment,
-      date: new Date(),
-      isLiked: false,
-      bgColor: initialBgColorClassName,
+      this.setState(prevState => ({
+        commentsList: [...prevState.commentsList, newComent],
+        count: prevState.count + 1,
+        name: '',
+        comment: '',
+      }))
     }
-
-    this.setState(prevState => ({
-      comentsList: [...comentsList, newComent],
-      count: prevState.count + 1,
-      name: '',
-      comment: '',
-    }))
   }
 
   onDelete = id => {
     this.setState(prevState => ({
-      comentsList: prevState.commentList.filter(eachone => {
-        if (id !== eachone.id) {
-          return [...comentsList, eachone]
-        }
-      }),
+      commentsList: prevState.commentsList.filter(eachone => id !== eachone.id),
+      count: prevState.count - 1,
     }))
   }
 
   onClickLikeBtn = id => {
     this.setState(prevState => ({
-      comentsList: prevState.comentsList.map(each => {
+      commentsList: prevState.commentsList.map(each => {
         if (id === each.id) {
           return {...each, isLiked: !each.isLiked}
         }
@@ -87,7 +85,7 @@ class Comments extends Component {
   }
 
   render() {
-    const {count, name, comment} = this.state
+    const {count, name, comment, commentsList} = this.state
 
     return (
       <div className="bg">
@@ -101,27 +99,30 @@ class Comments extends Component {
                 className="input1"
                 type="search"
                 placeholder="Your Name"
+                value={name}
               />
-              <input
+              <textarea
                 onChange={this.onClickComment}
                 className="input2"
                 type="textarea"
-                placeholder="Comment"
+                placeholder="Your Comment"
+                value={comment}
               />
               <button type="submit">Add Comment</button>
             </form>
             <img
               className="img"
               src="https://assets.ccbp.in/frontend/react-js/comments-app/comments-img.png"
+              alt="comments"
             />
           </div>
         </div>
         <hr />
         <div className="row-align">
           <p className="count-style">{count}</p>
-          <p> Comments</p>
+          <p className="come"> Comments</p>
           <ul>
-            {comentsList.map(eachComent => (
+            {commentsList.map(eachComent => (
               <CommentItem
                 details={eachComent}
                 key={eachComent.id}
